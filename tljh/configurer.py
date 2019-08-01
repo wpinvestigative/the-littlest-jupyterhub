@@ -194,6 +194,12 @@ def update_user_environment(c, config):
     """
     user_env = config['user_environment']
 
+    # Set command to be 'jupyter-labhub' regardless of where we launch
+    # This is required to get hub command acess in lab
+    # From https://github.com/yuvipanda/the-littlest-jupyterhub/commit/276b8284b9f7283e5f1a894e29bab0abe5d8dd23?diff=split
+    # See: https://github.com/jupyterhub/the-littlest-jupyterhub/issues/282
+    c.Spawner.cmd = ['jupyter-labhub']
+
     # Set default application users are launched into
     if user_env['default_app'] == 'jupyterlab':
         c.Spawner.default_url = '/lab'
