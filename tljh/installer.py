@@ -201,7 +201,8 @@ def ensure_jupyterhub_package(prefix):
     apt.install_packages([
         'libssl-dev',
         'libcurl4-openssl-dev',
-        'build-essential'
+        'build-essential',
+        'libpq-dev'
     ])
     conda.ensure_pip_packages(prefix, [
         'pycurl==7.43.*'
