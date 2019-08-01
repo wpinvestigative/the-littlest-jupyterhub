@@ -253,7 +253,7 @@ def ensure_user_environment(user_requirements_txt_file):
 
     conda.ensure_conda_packages(USER_ENV_PREFIX, [
         # Conda's latest version is on conda much more so than on PyPI.
-        'conda==4.5.8',
+        'conda==4.7.10',
         'r-base',
         'r-essentials',
         'r-irkernel'
