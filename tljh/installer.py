@@ -170,6 +170,12 @@ def ensure_jupyterlab_extensions():
     """
     extensions = [
         '@jupyterlab/hub-extension',
+        '@jupyterlab/git',
+        '@jupyterlab/google-drive',
+        '@jupyterlab/shortcutui',
+        'dask-labextension',
+        '@jupyter-voila/jupyterlab-preview',
+        '@jupyterlab/commenting-extension'
         '@jupyter-widgets/jupyterlab-manager'
     ]
     utils.run_subprocess([
@@ -195,7 +201,8 @@ def ensure_jupyterhub_package(prefix):
     apt.install_packages([
         'libssl-dev',
         'libcurl4-openssl-dev',
-        'build-essential'
+        'build-essential',
+        'libpq-dev'
     ])
     conda.ensure_pip_packages(prefix, [
         'pycurl==7.43.*'
@@ -246,7 +253,10 @@ def ensure_user_environment(user_requirements_txt_file):
 
     conda.ensure_conda_packages(USER_ENV_PREFIX, [
         # Conda's latest version is on conda much more so than on PyPI.
-        'conda==4.5.8'
+        'conda==4.7.10',
+        'r-base',
+        'r-essentials',
+        'r-irkernel'
     ])
 
     conda.ensure_pip_packages(USER_ENV_PREFIX, [
@@ -254,7 +264,7 @@ def ensure_user_environment(user_requirements_txt_file):
         'jupyterhub==1.0.0',
         'notebook==5.7.8',
         # Install additional notebook frontends!
-        'jupyterlab==0.35.4',
+        'jupyterlab==1.0.4',
         'nteract-on-jupyter==2.0.7',
         # nbgitpuller for easily pulling in Git repositories
         'nbgitpuller==0.6.1',
